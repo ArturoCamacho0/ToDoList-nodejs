@@ -1,12 +1,1 @@
-[
-  {
-    "id": "e975f21f-99e2-4a77-a813-64ac4b6bfee4",
-    "description": "Comer algo",
-    "completeOn": null
-  },
-  {
-    "id": "fdb5c2ea-124c-4f39-a9ce-cbd2af0785d6",
-    "description": "Dormir",
-    "completeOn": null
-  }
-]
+[{"id":"34a24944-9b23-4faf-9c27-19d7eb1a160a","description":"Comer algo","completeOn":true},{"id":"7ba1ed19-a0cf-4734-9049-dd6a89faa6bd","description":"Hacer el quehacer","completeOn":null},{"id":"29bdac9f-16bd-43bd-ab75-92d1eb402b05","description":"Acomodar la casa","completeOn":null}]

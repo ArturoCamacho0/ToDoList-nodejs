@@ -1,5 +1,7 @@
-const inquirer = require("inquirer");
 require("colors");
+
+const inquirer = require("inquirer");
+const Tasks = require("../models/tasks");
 
 const questions = [
   {
@@ -84,8 +86,42 @@ const readInput = async (message) => {
   return description;
 };
 
+const listTasksDelete = async (tasks = {}) => {
+  const choices = tasks.map((task, id) => {
+    return {
+      value: task.id,
+      name: (id + 1 + ". ").magenta + task.description,
+    };
+  });
+
+  const { getTask: taskId } = await inquirer.prompt([
+    {
+      type: "list",
+      name: "getTask",
+      message: "¿Qué tarea desea eliminar?".blue,
+      choices,
+    },
+  ]);
+
+  return taskId;
+};
+
+const confirmDelete = async () => {
+  const { deleteTask: confirm } = await inquirer.prompt([
+    {
+      type: "confirm",
+      name: "deleteTask",
+      message: "¿Está segur@ que quiere eliminar la tarea?".brightRed,
+    },
+  ]);
+
+  return confirm;
+};
+
 module.exports = {
   inquirerMenu,
   pause,
   readInput,
+  listTasksDelete,
+  confirmDelete,
 };
