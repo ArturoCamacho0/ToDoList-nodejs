@@ -1,3 +1,4 @@
+const moment = require("moment");
 const Task = require("./task");
 
 class Tasks {
@@ -49,7 +50,8 @@ class Tasks {
             `${counter}- `.magenta +
               description +
               " :: " +
-              "COMPLETADA".green
+              "COMPLETADA".green +
+              ` - ${moment(completeOn).calendar()}`.white
           );
         }
       } else {
@@ -63,10 +65,25 @@ class Tasks {
     });
   }
 
-  deleteTask(id = ''){
-    if(this._listing[id]){
+  deleteTask(id = "") {
+    if (this._listing[id]) {
       delete this._listing[id];
     }
+  }
+
+  checkToggleTasks(ids = []) {
+    ids.forEach((id) => {
+      const task = this._listing[id];
+      if (!task.completeOn) {
+        task.completeOn = moment().format(); ;
+      }
+    });
+
+    this.listingArr.forEach(task => {
+      if(!ids.includes(task.id)){
+        this._listing[task.id].completeOn = null;
+      }
+    });
   }
 }
 
